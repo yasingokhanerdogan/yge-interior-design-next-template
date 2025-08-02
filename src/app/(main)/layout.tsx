@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { paths } from "@/lib/routes";
 
 import { Header, Sidebar, Footer } from "@/components/layout";
+import { cn } from "@/lib/utils";
 
 type MainLayoutProps = {
   children: React.ReactNode;
@@ -13,13 +14,15 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname();
 
   return (
-    <div className="relative h-screen">
+    <div className="relative">
       <div className="flex">
         <Sidebar />
-        <main className="xl:ml-72 xl:w-[calc(100%-288px)] min-h-screen transition-all duration-300 ease-in-out flex-1">
-          {children}
+        <div className="xl:ml-72 xl:w-[calc(100%-288px)] flex-1">
+          <main className={cn(pathname === paths.MAIN.HOME ? "min-h-screen" : "min-h-[calc(100vh-3.5rem)]")}>
+            {children}
+          </main>
           {pathname !== paths.MAIN.HOME && <Footer />}
-        </main>
+        </div>
       </div>
     </div>
   );
