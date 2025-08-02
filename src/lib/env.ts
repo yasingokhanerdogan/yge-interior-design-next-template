@@ -3,15 +3,15 @@ import { z } from "zod";
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
 
-  NEXT_PUBLIC_DEFAULT_THEME: z.enum(["light", "dark"]).default("dark"),
+  NEXT_PUBLIC_DEFAULT_THEME: z.enum(["light", "dark"]).default("light"),
 
   NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().optional(),
 
-  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string().min(1, "RECAPTCHA_SITE_KEY is required"),
-  NEXT_PUBLIC_RECAPTCHA_SECRET_KEY: z.string().min(1, "RECAPTCHA_SECRET_KEY is required"),
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string().optional(),
+  NEXT_PUBLIC_RECAPTCHA_SECRET_KEY: z.string().optional(),
 
-  SMTP_SERVICE: z.string().default("email"),
-  SMTP_HOST: z.string().default("smtp.email.com"),
+  SMTP_SERVICE: z.string().default("gmail"),
+  SMTP_HOST: z.string().default("smtp.gmail.com"),
   SMTP_PORT: z.union([z.string(), z.number()]).default("465"),
   SMTP_SECURE: z
     .string()
@@ -19,8 +19,8 @@ const envSchema = z.object({
     .transform((val) => val === "true")
     .default(false),
 
-  SMTP_USER: z.string().email("SMTP_USER must be a valid email"),
-  SMTP_PASS: z.string().min(1, "SMTP_PASS is required"),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
 });
 
 const _parsedEnv = envSchema.safeParse(process.env);
