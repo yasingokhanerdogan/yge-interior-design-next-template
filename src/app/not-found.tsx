@@ -1,13 +1,6 @@
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "404 - Page Not Found",
-};
+import { redirect } from "next/navigation";
+import { paths } from "@/lib/routes";
 
 export default function NotFound() {
-  return (
-    <div className="h-screen flex items-center justify-center p-8">
-      <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
-    </div>
-  );
+  redirect(paths.ERRORS.NOT_FOUND);
 }

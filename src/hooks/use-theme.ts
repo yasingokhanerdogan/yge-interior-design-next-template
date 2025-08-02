@@ -3,14 +3,14 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useTheme as useNextTheme } from "next-themes";
 
-type Theme = "light" | "dark" | "system";
+export type Theme = "light" | "dark" | "system";
 
-type ThemeResponse = {
+export interface ThemeResponse {
   themeMounted: boolean;
   theme: Theme;
   systemTheme: Omit<Theme, "system">;
   setTheme: Dispatch<SetStateAction<Theme>>;
-};
+}
 
 export default function useTheme(): ThemeResponse {
   const [themeMounted, setThemeMount] = useState(false);

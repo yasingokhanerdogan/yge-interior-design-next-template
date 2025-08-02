@@ -1,3 +1,6 @@
+import { envConfig } from "@/lib/env";
+import { paths } from "@/lib/routes";
+import { urlBuilder } from "@/lib/utils";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -5,11 +8,14 @@ import AboutImage from "~/25.png";
 
 export const metadata: Metadata = {
   title: "About",
+  alternates: {
+    canonical: `${envConfig.SITE_URL}${urlBuilder(paths.MAIN.ABOUT)}`,
+  },
 };
 
 export default function AboutPage() {
   return (
-    <div className="w-full max-w-7xl mx-auto grid xl:grid-cols-2 px-8 py-20 gap-4">
+    <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-2 px-8 py-20 gap-4">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-1">
           <h3 className="text-lg text-primary font-medium">About Us</h3>
@@ -33,8 +39,8 @@ export default function AboutPage() {
         <div className="flex items-center gap-2">
           <span className="text-[11rem] text-primary font-medium">10</span>
           <div className="flex flex-col">
-            <span className="text-6xl text-primary font-medium">in architecture design</span>
-            <span className="text-4xl text-foreground font-medium">years of experience</span>
+            <span className="text-5xl text-primary font-medium">in architecture design</span>
+            <span className="text-3xl text-foreground font-medium">years of experience</span>
           </div>
         </div>
       </div>

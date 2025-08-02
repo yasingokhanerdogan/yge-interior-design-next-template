@@ -4,8 +4,8 @@ export const paths = {
     ABOUT: "/about",
     SERVICES: "/services",
     PORTFOLIO: "/portfolio",
-    BLOG: "/blog",
-    GALLERY: "/gallery",
+    BLOG: "#",
+    GALLERY: "#",
     CONTACT: "/contact",
   },
   ERRORS: {

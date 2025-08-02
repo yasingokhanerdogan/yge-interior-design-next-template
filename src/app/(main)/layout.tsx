@@ -6,15 +6,16 @@ import { paths } from "@/lib/routes";
 import { Header, Sidebar, Footer } from "@/components/layout";
 import { cn } from "@/lib/utils";
 
-type MainLayoutProps = {
+interface MainLayoutProps {
   children: React.ReactNode;
-};
+}
 
 export default function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname();
 
   return (
     <div className="relative">
+      <Header />
       <div className="flex">
         <Sidebar />
         <div className="xl:ml-72 xl:w-[calc(100%-288px)] flex-1">

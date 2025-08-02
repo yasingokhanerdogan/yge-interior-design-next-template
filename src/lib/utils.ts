@@ -14,7 +14,27 @@ export function scrollToTop() {
 }
 
 export function convertToSlug(text: string): string {
-  return text
+  const charMap: Record<string, string> = {
+    ç: "c",
+    Ç: "c",
+    ğ: "g",
+    Ğ: "g",
+    ı: "i",
+    İ: "i",
+    ö: "o",
+    Ö: "o",
+    ş: "s",
+    Ş: "s",
+    ü: "u",
+    Ü: "u",
+  };
+
+  const normalized = text
+    .split("")
+    .map((char) => charMap[char] || char)
+    .join("");
+
+  return normalized
     .toLowerCase()
     .trim()
     .replace(/[\s\W-]+/g, "-")

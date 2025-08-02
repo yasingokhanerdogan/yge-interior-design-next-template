@@ -4,9 +4,9 @@ import { AppProgressProvider as ProgressProvider } from "@bprogress/next";
 import Colors from "tailwindcss/colors";
 import useTheme from "@/hooks/use-theme";
 
-type TopbarProviderProps = {
+interface TopbarProviderProps {
   children: React.ReactNode;
-};
+}
 
 export default function TopbarProvider({ children }: TopbarProviderProps) {
   const { themeMounted, theme } = useTheme();
@@ -15,7 +15,7 @@ export default function TopbarProvider({ children }: TopbarProviderProps) {
 
   return (
     <ProgressProvider
-      height="2px"
+      height="3px"
       color={theme === "light" ? Colors.stone[400] : Colors.stone[400]}
       options={{ showSpinner: false }}
       shallowRouting

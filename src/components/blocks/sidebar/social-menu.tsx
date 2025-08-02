@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { FacebookIcon, InstagramIcon, TwitterIcon } from "lucide-react";
 
-const socialLinks = [
+type SocialLinkProps = {
+  href: string;
+  icon: React.ReactNode;
+};
+
+const socialLinks: SocialLinkProps[] = [
   {
     href: "https://www.facebook.com",
     icon: <FacebookIcon className="w-6 h-6" />,
