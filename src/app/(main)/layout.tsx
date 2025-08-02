@@ -18,6 +18,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         <Sidebar />
         <main className="xl:ml-72 xl:w-[calc(100%-288px)] min-h-screen transition-all duration-300 ease-in-out flex-1">
           {children}
+          {pathname !== paths.MAIN.HOME && <Footer />}
         </main>
       </div>
     </div>
