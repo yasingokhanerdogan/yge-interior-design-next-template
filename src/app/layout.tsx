@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 import Providers from "@/providers";
 
-export const teko = Teko({
+const teko = Teko({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-teko",
   subsets: ["latin"],

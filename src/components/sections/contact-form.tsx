@@ -37,7 +37,7 @@ export default function ContactForm() {
     },
   });
 
-  async function sendEmail(data: any) {
+  async function sendEmail(data: ContactFormSchema) {
     const response = await fetch(`${envConfig.SITE_URL}/api/send-email`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
