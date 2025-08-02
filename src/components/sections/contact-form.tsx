@@ -1,14 +1,19 @@
 "use client";
 
-import { delay } from "@/lib/utils";
+import { useState } from "react";
+import { envConfig } from "@/lib/env";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import Recaptcha from "@/components/blocks/recaptcha";
+
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -20,6 +25,8 @@ const formSchema = z.object({
 type ContactFormSchema = z.infer<typeof formSchema>;
 
 export default function ContactForm() {
+  const [captcha, setCaptcha] = useState<string | null>(null);
+
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,9 +37,24 @@ export default function ContactForm() {
     },
   });
 
+  async function sendEmail(data: any) {
+    const response = await fetch(`${envConfig.SITE_URL}/api/send-email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
+
   async function onSubmit(data: ContactFormSchema) {
-    await delay(1000);
-    alert("Message sent");
+    if (!captcha) return alert("Please verify the reCAPTCHA.");
+    const response = await sendEmail(data);
+
+    if (response.info) {
+      toast.success("Email sent successfully");
+    } else {
+      toast.error("Failed to send email");
+    }
     form.reset();
   }
 
@@ -82,6 +104,7 @@ export default function ContactForm() {
               </FormItem>
             )}
           />
+          <Recaptcha onChange={setCaptcha} />
           <Button className="rounded-none" size="lg" type="submit" disabled={form.formState.isSubmitting}>
             {form.formState.isSubmitting ? "Sending..." : "Send"}
           </Button>

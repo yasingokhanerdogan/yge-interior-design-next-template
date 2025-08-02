@@ -8,8 +8,8 @@ export const envConfig = {
 
   GOOGLE_ANALYTICS_ID: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "",
 
-  RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "",
-  RECAPTCHA_SECRET_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY || "",
+  RECAPTCHA_SITE_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "sitekey",
+  RECAPTCHA_SECRET_KEY: process.env.NEXT_PUBLIC_RECAPTCHA_SECRET_KEY || "secretkey",
 
   SMTP_SERVICE: process.env.SMTP_SERVICE || "gmail",
   SMTP_HOST: process.env.SMTP_HOST || "smtp.gmail.com",
